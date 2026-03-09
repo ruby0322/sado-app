@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Todo {
   id: number;
@@ -17,14 +18,20 @@ export default function Home() {
     if (!text) return;
     setTodos([...todos, { id: Date.now(), text, done: false }]);
     setInput("");
+    toast.success("Todo added!");
   }
 
   function toggleTodo(id: number) {
     setTodos(todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+      toast(todo.done ? "Todo marked as incomplete" : "Todo completed!", { icon: todo.done ? "↩️" : "✅" });
+    }
   }
 
   function deleteTodo(id: number) {
     setTodos(todos.filter((t) => t.id !== id));
+    toast.error("Todo deleted!");
   }
 
   return (
