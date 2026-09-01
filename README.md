@@ -146,3 +146,4 @@ A GitHub repository containing:
 * Proper branch structure
 * Clear commit history
 * A merged feature branch into `dev`
+This project is a practice for Git workflow.
